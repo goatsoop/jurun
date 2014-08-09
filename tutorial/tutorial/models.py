@@ -27,6 +27,6 @@ class MyModel(Base):
 class Dossier(Base):
     __tablename__ = 'dossiers'
     id = Column(Integer, primary_key=True)
-    nom_dos = Column(Text)
+    nom_dos = Column(Text, unique=True)
 
 Index('my_index', MyModel.name, unique=True, mysql_length=255)

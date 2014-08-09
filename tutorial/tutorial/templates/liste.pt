@@ -12,7 +12,15 @@
     <form action="/">
 	<table>
 	    <tr><td>Bonjour!</td></tr>
-	    ${rendu}
+	    <div>
+			<?python 
+			liste=str()
+			for i in range(len(rendu)): 
+				liste+=(rendu.get(i))
+				liste+="<br/><br/>"
+				i+=1?>
+				<div tal:content="structure liste">					
+				</div>
 	    <tr><td></td></tr>
 	</table>
     </form>

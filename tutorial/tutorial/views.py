@@ -2,6 +2,7 @@ from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.renderers import get_renderer
 from sqlalchemy.exc import DBAPIError
+import docutils
 
 from .models import (
     DBSession,
@@ -20,15 +21,14 @@ def site_layout():
 
 @view_config(route_name='home', renderer='templates/accueil.pt')
 def my_view(request):
-    if request.method == 'POST':
-        entree=request.POST.getone('caca2')
-        nouveau_doss = Dossier(nom_dos=entree)
-        DBSession.add(nouveau_doss)
-        return {"nom_dossier_donne": entree, "layout": site_layout(), "page_title": "Accueil"}
-    else:
-        return {"nom_dossier_donne": "'C\'est votre première visite, ajoutez donc un dossier.", "layout": site_layout(), "page_title": "Accueil"}
+    #~ if request.method == 'POST':
+        #~ entree=request.POST.getone('prompt')
+        #~ for name, in DBSession.query(Dossier.nom_dos).filter(Dossier.nom_dos == entree):
         
-
+    #~ return {"nom_dossier_donne": entree, "layout": site_layout(), "page_title": "Accueil"}
+    #~ else:
+    return {"nom_dossier_donne": "'C\'est votre première visite, ajoutez donc un dossier.", "layout": site_layout(), "page_title": "Accueil"}
+    
 @view_config(route_name='list', renderer='templates/liste.pt')
 def reservations(request):
     liste_dossiers=DBSession.query(Dossier).all()
@@ -39,13 +39,31 @@ def reservations(request):
         print(dossier)
         rendu[i]=nom
         i+=1
-    liste = str()
-    for i in range(len(rendu)):
-        liste+=(rendu.get(i))
-        liste+="\n | "
-        i+=1
-    return {"rendu": liste, "layout": site_layout(), "page_title": "LaListe"}
+    #~ liste = str()
+    #~ for i in range(len(rendu)):
+        #~ liste+=(rendu.get(i))
+        #~ liste+="\n | "
+        #~ i+=1
+    return {"rendu": rendu, "layout": site_layout(), "page_title": "LaListe"}
 
+
+@view_config(route_name='add_page', renderer='templates/ajout.pt')
+def add_page(request):
+    if request.method == 'GET':
+        nomdoss = request.GET.getone('prompt')
+        print(nomdoss)
+        doss_aj = Dossier(nom_dos=nomdoss)
+        DBSession.add(doss_aj)
+        return{"layout": site_layout(), "page_title": "LaVueGagné"}
+    return{"layout": site_layout(), "page_title": "LaVuePerdu"}
+    
+
+
+@view_config(route_name='view_case', renderer='templates/vue_dos.pt')
+def view_case(request):
+    pagename= request.GET.getone('nomdoss')
+    print('CEST TOUT BON')
+    return(pagename)
 
 conn_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem

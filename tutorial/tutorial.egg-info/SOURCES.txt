@@ -21,4 +21,9 @@ tutorial/static/pyramid-16x16.png
 tutorial/static/pyramid.png
 tutorial/static/theme.css
 tutorial/static/theme.min.css
-tutorial/templates/mytemplate.pt
+tutorial/templates/accueil.pt
+tutorial/templates/ajout.pt
+tutorial/templates/global.pt
+tutorial/templates/infos.pt
+tutorial/templates/liste.pt
+tutorial/templates/vue_dos.pt

@@ -13,6 +13,7 @@
 	<hr/>
 <ul>
     <li><a href="/">Accueil</a></li>
+    <li><a href="/add_page">Ajout</a></li>
     <li><a href="/liste">Liste</a></li>
 </ul>
 <hr/>
