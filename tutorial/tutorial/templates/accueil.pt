@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+    
+<div metal:use-macro="layout">
+    <div metal:fill-slot="content">
+<div>
+    <h1>Vous êtes à l'accueil</h1>
+    <br/>
+    <form action="/" method=POST>
+	<table>
+	    <tr><td>Le nom du dossier a ajouter : </td><td><input type="text" name="caca2"></td></tr>
+	    <tr><td><input type=submit class="button" name="nom_donne" value="Ajouter dossier"></td></tr></table></form>
+	    <form action="/liste"><input type=submit class="button" value="Voir la liste"></form>
+</div>
+    </div>
+</div>
+
+</body>
+</html>
